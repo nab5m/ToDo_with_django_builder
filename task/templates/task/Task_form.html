@@ -1,0 +1,50 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'task_Task_list' %}">
+    Task Listing
+    </a>
+</p>
+    
+<form method="post">
+{% csrf_token %}
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="created">created: </label>
+        <input class="form-control col-sm-10" id="created" type="date" name="created" value="{{ object.created }}" disabled>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="name">name: </label>
+        <input class="form-control col-sm-10" id="name" type="text" name="name" value="{{ object.name }}">
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">completion: {{ object.completion }} </label>
+        <span class="col-sm-5 form-check">
+            <input class="form-check-input"
+                   type="radio" name="completion" id="completionTrue" value="True"
+                    {% ifnotequal object.completion False %}checked{% endifnotequal %}>
+            <label class="form-check-label" for="completionTrue">
+                True
+            </label>
+        </span>
+
+        <span class="col-sm-5 form-check">
+            <input class="form-check-input"
+                   type="radio" name="completion" id="completionFalse" value="False"
+                   {% ifnotequal object.completion True %}checked{% endifnotequal %}>
+            <label class="form-check-label" for="completionFalse">
+                False
+            </label>
+        </span>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="last_updated">last_updated: </label>
+        <input class="form-control col-sm-10" id="last_updated" type="date" name="last_updated" value="{{ object.last_updated }}" disabled>
+    </div>
+
+    <input type="submit" value="Save" class="btn btn-primary">
+</form>
+
+{% endblock %}

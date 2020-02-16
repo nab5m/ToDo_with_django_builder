@@ -1,0 +1,7 @@
+__pycache__
+*.pyc
+*.log
+.idea
+db.sqlite3
+venv
+ToDo/secret_settings.py
